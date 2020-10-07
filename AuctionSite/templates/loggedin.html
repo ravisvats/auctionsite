@@ -1,0 +1,264 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auction</title>
+<meta name="description" content="" />
+<meta name="keyword" content="" />
+
+
+<link rel="shortcut icon" type="img/png" href="{% static 'img/fav.png' %}" />
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}"> 
+<link rel="stylesheet" href="{% static 'css/slick.css' %}"> 
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+
+<body>
+    
+<!-- Newsletter -->
+<div class="container login-form">
+    <div class="modal fade" id="myModal1">
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <div class="modal-title text-center">Auction Email Alerts Sign Up ? </div>
+              <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+              <div class="row login-top">
+                <div class="col">
+            <form>
+                   
+    
+                      <div class="row form-group">
+                     <div class="col-md-6 pt-4">
+                      <input type="Password" class="form-control"  placeholder="First Name " required>
+                    </div>
+                    <div class="col-md-6 pt-4">
+                      <input type="Password" class="form-control" placeholder="Last Name " required>
+                    </div>
+                  </div>
+                    
+                    <div class="row form-group">
+                    <div class="col-md-12 pt-4">
+                      <input type="text" class="form-control" placeholder="Enter Email Adress" required>
+                    </div>
+                    </div>
+                    
+                
+    
+                   
+                <div class="row form-group  pt-2">
+                    <div class="col-md-12 text-center">
+                      <input type="submit" class="ban-btn" value="Submit">
+                    </div>
+                  </div>
+               </form>
+               </div>
+              </div>
+    
+    
+            
+    
+            </div>
+    
+    
+               
+          </div>
+        </div>
+      </div>
+      </div>
+    <!-- Newsletter end -->
+    
+<section class="tophead">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="social">
+            <ul>
+              <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              <li><a href=""></a><i class="fa fa-linkedin" aria-hidden="true"></i></li>
+              <li><a href=""></a><i class="fa fa-youtube-play" aria-hidden="true"></i></li>             
+              <li><a href=""><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="col-md-2 offset-2">
+          <h5>Call us: <span>570-694-4002</span></h5>
+        </div>
+        <div class="col-md-1" data-toggle="modal" data-target="#myModal1"><img src="{% static 'img/msg-alert.png' %}" width="25px"></div>
+        {% if request.user.is_authenticated %}
+          {% for group in request.user.groups.all %}
+            {% if group.name == 'bidder' %} Bidder
+              {% else %} Vendor
+            {% endif %}
+          {% endfor %} : {{request.user.first_name}} {{request.user.last_name}}
+          <button onclick="window.location.href='/logout/'">Logout</button>
+        {%else %}
+        <div class="col-md-1" data-toggle="modal" data-target="#myModal2"><button onclick="document.getElementById('usertype').value='vendor'">Vendor</button></div>
+        <div class="col-md-1" data-toggle="modal" data-target="#myModal2"><button onclick="document.getElementById('usertype').value='bidder'">Bidder</button></div>
+        <div class="col-md-1" data-toggle="modal" data-target="#myModal3"><button>Login</button></div>
+        {% endif %}
+        <!-- <div class="col-md-1" data-toggle="modal" data-target="#myModal2"><button onclick="document.getElementById('usertype').value='vendor'">Vendor</button></div>
+        <div class="col-md-1" data-toggle="modal" data-target="#myModal2"><button onclick="document.getElementById('usertype').value='bidder'">Bidder</button></div>
+        <div class="col-md-1" data-toggle="modal" data-target="#myModal3"><button>Login</button></div> -->
+      </div>
+    </div>
+  </section>
+  
+  <section class="menubar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+        <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}"></a> </div>
+        <div class="col-md-7 offset-1 ">
+  
+  
+  <div id="main">
+      <nav>
+        <div class="nav-xbootstrap">
+          <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="javascript:void(0)">Auctions<span class="glyphicon glyphicon-chevron-down iconsize"></span></a>
+              <ul class="dropdown">
+                <li><a href="general_auction.html">General Auctions</a></li>
+                <li><a href="">Electronic</a></li>
+                <li><a href="">Furniture</a></li>
+                <li><a href="">Automobile</a></li>
+                <li><a href="">General</a></li>
+                <li><a href="">Designer Dress</a></li>
+                  <li><a href="">Property</a></li>
+  
+  
+              </ul>
+            </li>
+            <li><a href="javascript:void(0)" >Locations<span class="glyphicon glyphicon-chevron-down iconsize"></span></a>
+              <ul class="dropdown">
+                <li><a href="#">Islington</a></li>
+                <li><a href="#">Lambeth</a></li>
+                <li><a href="#">Hounslow</a></li>
+                  <li><a href="#">Greenwich</a></li>
+                 <li><a href="#">Hackney</a></li> 
+              </ul>
+            </li>
+           <li><a href="#">FAQ</a></li>
+            <li><a href="{% url 'contact' %}">Contacts</a></li>
+          </ul>
+        </div>
+      </nav>
+     
+  
+  </div>
+        </div>
+        <div class="col-md-2">
+          <div class="row form-group">
+            <div class="col">
+          </div>
+        </div>
+          
+       
+      </div>
+    </div>
+  </section>
+  <section>
+    <h1>Welcome <span>
+        {% for group in request.user.groups.all %}
+            {% if group.name == 'bidder' %}
+            Bidder
+            {% else %}
+            Vendor
+            {% endif %}
+        {% endfor %}
+        </span> {{request.user.first_name}} {{request.user.last_name}}</h1>
+  </section> 
+  <footer class="foot">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <img src="{% static 'img/logo-white.png' %}">
+          <p>Our stress-free finance department that can find financial solutions to save you money.</p>
+  
+  
+        </div>
+        <div class="col-md-3 featured">
+          <h4>Featured Links</h4>
+          <ul>
+            <li><a href="">About</a></li>
+            <li><a href="">Products</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Auctions</a></li>
+             <li><a href="">Guide & FAQ</a></li>
+            <li><a href="">Term</a></li>
+            <li><a href="">Privacy</a></li>
+            <li><a href="">Sitemap </a></li>
+          
+          </ul>
+          
+        </div>
+  
+        <div class="col-md-3 gal">
+          <h4>Photo Gallery</h4>
+          <ul>
+            <li><img src="{% static 'img/latop.jpg' %}"></li>
+            <li><img src="{% static 'img/mobile.jpg' %}"></li>
+            <li><img src="{% static 'img/sofa.jpg' %}"></li>
+            <li><img src="{% static 'img/car.jpg' %}"></li>
+            <li><img src="{% static 'img/sofa.jpg' %}"></li>
+            <li><img src="{% static 'img/latop.jpg' %}"></li>
+            <li><img src="{% static 'img/mobile.jpg' %}"></li>
+            <li><img src="{% static 'img/car.jpg' %}"></li>
+  
+            
+          </ul>
+        </div>
+  
+        <div class="col-md-3 social">
+          <h4>Social Network</h4>
+          <ul>
+              <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+              <li><a href=""><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+              <li><a href=""><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+              <li><a href=""><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+          </ul>
+  
+            <div class="row form-group pt-5 subs">
+            <div class="col">
+             <h4>Subscribe Newsletter</h4>
+              <input type="" class="form-control mt-3" name="" placeholder="Enter Email Address">
+              <button><i class="fa fa-search" aria-hidden="true"></i>
+  </button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="row pt-5 mt-5 copyright">
+        <div class="col text-center">
+          <h6>© Copyright 2020 </h6>
+        </div>
+      </div>
+    </div>
+    
+  </footer>
+  
+  <script  type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.js' %}"></script>
+  <script   src="{% static 'js/slick.js' %}"></script>
+</body>
+</html>
